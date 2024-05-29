@@ -1,3 +1,28 @@
+-- Run this block if you already have a database and need to re-create it
+DELETE FROM Users;
+DELETE FROM DemotionQueue;
+DELETE FROM Subscriptions;
+DELETE FROM Posts;
+DELETE FROM Comments;
+DELETE FROM Reactions;
+DELETE FROM PostReactions;
+DELETE FROM Tags;
+DELETE FROM PostTags;
+DELETE FROM Categories;
+
+DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS DemotionQueue;
+DROP TABLE IF EXISTS Subscriptions;
+DROP TABLE IF EXISTS Posts;
+DROP TABLE IF EXISTS Comments;
+DROP TABLE IF EXISTS Reactions;
+DROP TABLE IF EXISTS PostReactions;
+DROP TABLE IF EXISTS Tags;
+DROP TABLE IF EXISTS PostTags;
+DROP TABLE IF EXISTS Categories;
+-- End block
+
+
 CREATE TABLE "Users" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "first_name" varchar,
@@ -19,7 +44,6 @@ CREATE TABLE "DemotionQueue" (
   FOREIGN KEY(`approver_one_id`) REFERENCES `Users`(`id`),
   PRIMARY KEY (action, admin_id, approver_one_id)
 );
-
 
 CREATE TABLE "Subscriptions" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -88,3 +112,52 @@ CREATE TABLE "Categories" (
 INSERT INTO Categories ('label') VALUES ('News');
 INSERT INTO Tags ('label') VALUES ('JavaScript');
 INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.com/so/happy');
+
+INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'password', 'profile_image_url', 'created_on', 'active')
+  VALUES (
+  'William', 
+  'Woodard', 
+  'williamwoodard@email.com', 
+  'im very cool',
+  'william_runs',
+  'running12345',
+  'https://upload.wikimedia.org/wikipedia/commons/1/12/William_Submarines_Crop.png',
+  '05/29/2024',
+  1
+);
+INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'password', 'profile_image_url', 'created_on', 'active')
+  VALUES (
+  'Blake', 
+  'Smith', 
+  'blakesmith@email.com', 
+  'im very extremely cool',
+  'blake_reads_good',
+  'reading12345',
+  'https://hips.hearstapps.com/hmg-prod/images/blake-shelton-gettyimages-1229169132.jpg',
+  '05/29/2024',
+  1
+);
+INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'password', 'profile_image_url', 'created_on', 'active')
+  VALUES (
+  'Leah', 
+  'Sanders', 
+  'leahsanders@email.com', 
+  'im a lot cool',
+  'leah_bakes',
+  'baking12345',
+  'https://lumiere-a.akamaihd.net/v1/images/leia-organa-main_9af6ff81.jpeg?region=367%2C153%2C1043%2C784',
+  '05/29/2024',
+  1
+);
+INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'password', 'profile_image_url', 'created_on', 'active')
+  VALUES (
+  'Niki', 
+  'Powell', 
+  'nikipowell@email.com', 
+  'im a lot a lot cool',
+  'niki_climbs',
+  'climbing12345',
+  'https://www.rollingstone.com/wp-content/uploads/2023/11/Nicki-Minaj-vogue-cover.jpg?w=1581&h=1054&crop=1',
+  '05/29/2024',
+  1
+);
