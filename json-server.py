@@ -3,6 +3,7 @@ from http.server import HTTPServer
 from request_handler import HandleRequests, status
 
 #import from views below
+from views import create_user
 
 class JSONServer(HandleRequests):
     """Server class to handle incoming HTTP requests"""
@@ -40,10 +41,15 @@ class JSONServer(HandleRequests):
         # Parse the URL and get the primary key
         url = self.parse_url(self.path)
 
+        # Get the request body JSON for the new data
         content_len = int(self.headers.get('content-length', 0))
         request_body = self.rfile.read(content_len)
         request_body = json.loads(request_body)
-        pass
+
+        if url['requested_resource'] == 'register':
+            successfully_registered = create_user(request_body)
+            if successfully_registered:
+                return self.response(successfully_registered, status.HTTP_201_SUCCESS_CREATED.value)
     
 
 #APPARENTLY NO ONE CARES ABOUT THIS
