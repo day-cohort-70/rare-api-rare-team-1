@@ -5,28 +5,27 @@ from request_handler import HandleRequests, status
 #import from views below
 
 from views import create_user, login_user
-
+from views import get_single_post
 
 class JSONServer(HandleRequests):
     """Server class to handle incoming HTTP requests"""
 
     def do_GET(self):
-        """Handle GET requests from a client"""
-        # response_body = ""
-        # url = self.parse_url(self.path)
 
-        # else:
-        return self.response("", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
-    
+        response_body = ""
+        url = self.parse_url(self.path)
+        resource = url["requested_resource"]
+
+        if resource == "posts":
+            if url['pk'] != 0:
+                response_body = get_single_post(url)
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
+
+
     def do_PUT(self):
         pass
-        #add else statement for no resource found
 
     def do_DELETE(self):
-        """Handle DELETE requests from a client"""
-
-        url = self.parse_url(self.path)
-        pk = url["pk"]
         pass
 
     def do_POST(self):
@@ -47,13 +46,12 @@ class JSONServer(HandleRequests):
             else: 
                 return self.response("", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA)
             
-
+        # Handles user registration
         if resource == 'register':
             successfully_registered = create_user(request_body)
             if successfully_registered:
                 return self.response(successfully_registered, status.HTTP_201_SUCCESS_CREATED.value)
         
-
     
 
 #APPARENTLY NO ONE CARES ABOUT THIS
