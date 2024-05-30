@@ -3,7 +3,9 @@ from http.server import HTTPServer
 from request_handler import HandleRequests, status
 
 #import from views below
-from views import create_user
+
+from views import create_user, login_user
+
 
 class JSONServer(HandleRequests):
     """Server class to handle incoming HTTP requests"""
@@ -17,15 +19,7 @@ class JSONServer(HandleRequests):
         return self.response("", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
     
     def do_PUT(self):
-         # Parse the URL and get the primary key
-        url = self.parse_url(self.path)
-        pk = url["pk"]
-
-         # Get the request body JSON for the new data
-        content_len = int(self.headers.get('content-length', 0))
-        request_body = self.rfile.read(content_len)
-        request_body = json.loads(request_body)
-        
+        pass
         #add else statement for no resource found
 
     def do_DELETE(self):
@@ -36,20 +30,30 @@ class JSONServer(HandleRequests):
         pass
 
     def do_POST(self):
-        """Handle POST requests from a client"""
-        
         # Parse the URL and get the primary key
         url = self.parse_url(self.path)
+        resource = url["requested_resource"]
 
-        # Get the request body JSON for the new data
+         # Get the request body JSON for the new data
         content_len = int(self.headers.get('content-length', 0))
         request_body = self.rfile.read(content_len)
         request_body = json.loads(request_body)
+        
+        #Handles initial login
+        if resource == "login":
+            verify_user = login_user(request_body)
+            if 'true' in verify_user:
+                return self.response(verify_user, status.HTTP_200_SUCCESS.value)
+            else: 
+                return self.response("", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA)
+            
 
-        if url['requested_resource'] == 'register':
+        if resource == 'register':
             successfully_registered = create_user(request_body)
             if successfully_registered:
                 return self.response(successfully_registered, status.HTTP_201_SUCCESS_CREATED.value)
+        
+
     
 
 #APPARENTLY NO ONE CARES ABOUT THIS
