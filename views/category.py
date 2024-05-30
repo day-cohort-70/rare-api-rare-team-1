@@ -22,3 +22,20 @@ def grabCategoryList():
         serialized_categories = json.dumps(categories)
 
     return serialized_categories
+
+
+def addCategory(label):
+    with sqlite3.connect("./db.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(
+            """
+            INSERT INTO Categories (label)
+            VALUES (?)
+            """,
+            (label,)
+        )
+
+        conn.commit()
+
+    return True
