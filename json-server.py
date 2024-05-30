@@ -3,7 +3,9 @@ from http.server import HTTPServer
 from request_handler import HandleRequests, status
 
 #import from views below
-from views import login_user
+
+from views import create_user, login_user
+
 
 class JSONServer(HandleRequests):
     """Server class to handle incoming HTTP requests"""
@@ -45,7 +47,11 @@ class JSONServer(HandleRequests):
             else: 
                 return self.response("", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA)
             
-        #add else statement for no resource found
+
+        if resource == 'register':
+            successfully_registered = create_user(request_body)
+            if successfully_registered:
+                return self.response(successfully_registered, status.HTTP_201_SUCCESS_CREATED.value)
         
 
     
