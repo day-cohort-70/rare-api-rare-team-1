@@ -161,3 +161,13 @@ INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'passw
   '05/29/2024',
   1
 );
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  1,
+  1,
+  'This is a Post Title',
+  '05/30/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for This specific Post, ya hear?',
+  1
+);
