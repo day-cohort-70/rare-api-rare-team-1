@@ -70,6 +70,7 @@ CREATE TABLE "Comments" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "post_id" INTEGER,
   "author_id" INTEGER,
+  "date" date,
   "content" varchar,
   FOREIGN KEY(`post_id`) REFERENCES `Posts`(`id`),
   FOREIGN KEY(`author_id`) REFERENCES `Users`(`id`)
@@ -161,6 +162,12 @@ INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'passw
   '05/29/2024',
   1
 );
+
+
+INSERT INTO comments ('post_id', 'author_id', 'date', 'content')
+  VALUES (1, 4, '5/14/2024', 'This speaks true!');
+INSERT INTO comments ('post_id', 'author_id', 'date', 'content')
+  VALUES (1, 2, '5/15/2024', 'I doubt this is actually true. Seems kinda crazy. People will write anything for attention these days.');
 
 INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
   VALUES (
