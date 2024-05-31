@@ -24,6 +24,7 @@ def get_all_posts(url):
             FROM Posts p
             JOIN Users u ON p.user_id = u.id
             JOIN Categories c ON p.category_id = c.id
+            ORDER BY p.publication_date DESC
             """)
         else:
             db_cursor.execute("""
@@ -36,6 +37,7 @@ def get_all_posts(url):
                 p.image_url,
                 p.content,
                 p.approved
+                ORDER BY p.publication_date DESC
             FROM Posts p
             """)
 
