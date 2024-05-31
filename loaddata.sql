@@ -161,6 +161,7 @@ INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'passw
   '05/29/2024',
   1
 );
+
 INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
   VALUES (
   1,
@@ -221,3 +222,4 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
   'This is the Content for Leahs post. how ya like them apples?',
   1
 );
+
