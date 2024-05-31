@@ -1,7 +1,7 @@
 import sqlite3
 import json
 
-def list_my_posts(url, user_id):
+def get_all_posts(url):
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -24,8 +24,7 @@ def list_my_posts(url, user_id):
             FROM Posts p
             JOIN Users u ON p.user_id = u.id
             JOIN Categories c ON p.category_id = c.id
-            WHERE p.user_id = ?
-            """, (user_id,))
+            """)
         else:
             db_cursor.execute("""
              SELECT
@@ -38,8 +37,7 @@ def list_my_posts(url, user_id):
                 p.content,
                 p.approved
             FROM Posts p
-            WHERE p.user_id = ?
-            """, (user_id,))
+            """)
 
         query_results = db_cursor.fetchall()
 
@@ -53,7 +51,7 @@ def list_my_posts(url, user_id):
                 "publication_date": row['publication_date'],
                 "image_url": row['image_url'],
                 "content": row['content'],
-                "approved": row['content']
+                "approved": row['approved']
             }
             if "query_params" in url and "_expand" in url["query_params"] and "users" and "categories" in url["query_params"]["_expand"]:
                 user = {

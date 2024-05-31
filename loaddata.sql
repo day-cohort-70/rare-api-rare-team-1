@@ -171,3 +171,23 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
   'This is the Content for This specific Post, ya hear?',
   1
 );
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  2,
+  1,
+  'Blakes Post Title',
+  '05/31/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Blakes post ya hear buddy?',
+  1
+);
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  2,
+  1,
+  'Blakes Older Post Title',
+  '05/29/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Blakes older post to test ordering the display of posts from newest to oldest ya hear buddy?',
+  1
+);

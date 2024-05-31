@@ -4,7 +4,7 @@ from request_handler import HandleRequests, status
 
 #import from views below
 
-from views import list_my_posts
+from views import get_all_posts
 from views import create_user, login_user
 
 
@@ -15,10 +15,9 @@ class JSONServer(HandleRequests):
         """Handle GET requests from a client"""
         response_body = ""
         url = self.parse_url(self.path)
-        user_id = 1
         if url["requested_resource"] == "posts":
             
-            response_body = list_my_posts(url, user_id)
+            response_body = get_all_posts(url)
             return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         # else:
