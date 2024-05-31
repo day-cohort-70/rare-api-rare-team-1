@@ -199,8 +199,12 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
   'This is the Content for Blakes older post to test ordering the display of posts from newest to oldest ya hear buddy?',
   1
 );
-INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
-  VALUES (
+
+
+
+  INSERT INTO Categories ('label') VALUES ('Cat 2');
+  INSERT INTO Categories ('label') VALUES ('Cat 3');
+
   2,
   1,
   'Blakes Future Post Title',
