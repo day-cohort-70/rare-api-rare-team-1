@@ -4,10 +4,13 @@ from request_handler import HandleRequests, status
 
 #import from views below
 
+from views import get_all_posts
 from views import create_user, login_user
 from views import get_single_post
 from views import grabCategoryList, addCategory
 from views import getTagList, addTag
+from views import get_all_comments, get_post_comments, create_comment
+
 
 
 class JSONServer(HandleRequests):
@@ -15,17 +18,29 @@ class JSONServer(HandleRequests):
 
     def do_GET(self):
 
-
         response_body = ""
         url = self.parse_url(self.path)
         resource = url["requested_resource"]
+        
+
 
         if resource == "posts":
             if url['pk'] != 0:
                 response_body = get_single_post(url)
                 return self.response(response_body, status.HTTP_200_SUCCESS.value)
+            else:
+                response_body = get_all_posts(url)
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
+            
+        elif url["requested_resource"] == "comments":
+            if url['pk'] != 0:
+                response_body = get_post_comments(url)
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
+            else:
+                response_body = get_all_comments(url)
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
-        if url["requested_resource"] == "category":
+        elif url["requested_resource"] == "category":
             if url["pk"] != 0:
                 pass
 
@@ -66,12 +81,18 @@ class JSONServer(HandleRequests):
             else: 
                 return self.response("", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA)
             
-        # Handles user registration
-        if resource == 'register':
+        elif resource == 'register':
             successfully_registered = create_user(request_body)
             if successfully_registered:
                 return self.response(successfully_registered, status.HTTP_201_SUCCESS_CREATED.value)
         
+        elif resource == "comments":
+            successfully_posted = create_comment(request_body)
+            if successfully_posted:
+                return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+            else:
+                return self.response("Unable to post comment", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA.value)
+
         elif resource == "category":
             successfully_posted = addCategory(request_body)
             if successfully_posted:
