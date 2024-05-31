@@ -201,3 +201,23 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
   'This is the Content for Blakes Future post its a post from the future',
   1
 );
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  4,
+  1,
+  'Niki Got Herself a Post!',
+  '05/29/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Nikis post. its really cool stuff',
+  1
+);
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  3,
+  1,
+  'Leah Got Herself a Post!',
+  '05/29/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Leahs post. how ya like them apples?',
+  1
+);
