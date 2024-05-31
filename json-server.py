@@ -15,12 +15,11 @@ class JSONServer(HandleRequests):
         """Handle GET requests from a client"""
         response_body = ""
         url = self.parse_url(self.path)
-
+        user_id = 1
         if url["requested_resource"] == "posts":
-            if url["pk"] != 0:
             
-                response_body = list_my_posts(url)
-                return self.response(response_body, status.HTTP_200_SUCCESS.value)
+            response_body = list_my_posts(url, user_id)
+            return self.response(response_body, status.HTTP_200_SUCCESS.value)
 
         # else:
         return self.response("", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
