@@ -163,18 +163,70 @@ INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'passw
   1
 );
 
-INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date', 'image_url', 'content', 'approved')
-  VALUES (
-    4, 
-    1, 
-    'Fears of Potato Shortage After a Nightmare 12 Months for Growers',
-    '05/30/2024',
-    'https://www.irishexaminer.com/cms_media/module_img/8274/4137482_6_articlelarge_Potato_20Grower_20Colin_20Buttimer_2c_20Rockvale_20Farm_2c_20Cork-7.jpg',
-    'Growers are living in hope that the fine weather spell forecasted for this June Bank Holiday materialises as they near the end of planting their potato crops. A shortage of Irish potatoes will soon become apparent to consumers especially as they could face higher prices as growers battle a "nightmare" for the last 12 months that has been the culmination of delayed plantings and harvests, and reduced yield. While early potato varieties should be planted early in the spring and harvested in June/July, as a result of continued wet weather, growers encountered difficulties in doing so and instead, the planting of these early crops came at much the same time as planting of the main crops. Irish Farmers Association potato chairman Sean Ryan said that farms in the midlands and parts of Leinster such as Meath are nearly finished up planting and overall have gotten on better in recent weeks due to more reasonable weather, while more southern counties such as Wexford and Cork are around 70% of the way there. With the forecast coming there now wed be hoping most of them will be finished planting towards the end of next week, Mr Ryan estimated. Potatoes should have been planted in March and into April and this year were at the first week of June and still not finished - that is going to affect yields that are going to come off those crops.',
-    1
-);
 
 INSERT INTO comments ('post_id', 'author_id', 'date', 'content')
   VALUES (1, 4, '5/14/2024', 'This speaks true!');
 INSERT INTO comments ('post_id', 'author_id', 'date', 'content')
   VALUES (1, 2, '5/15/2024', 'I doubt this is actually true. Seems kinda crazy. People will write anything for attention these days.');
+
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  1,
+  1,
+  'This is a Post Title',
+  '05/30/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for This specific Post, ya hear?',
+  1
+);
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  2,
+  1,
+  'Blakes Post Title',
+  '05/31/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Blakes post ya hear buddy?',
+  1
+);
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  2,
+  1,
+  'Blakes Older Post Title',
+  '05/29/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Blakes older post to test ordering the display of posts from newest to oldest ya hear buddy?',
+  1
+);
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  2,
+  1,
+  'Blakes Future Post Title',
+  '06/01/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Blakes Future post its a post from the future',
+  1
+);
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  4,
+  1,
+  'Niki Got Herself a Post!',
+  '05/29/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Nikis post. its really cool stuff',
+  1
+);
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  3,
+  1,
+  'Leah Got Herself a Post!',
+  '05/29/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Leahs post. how ya like them apples?',
+  1
+);
+
