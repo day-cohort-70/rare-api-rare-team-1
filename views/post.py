@@ -75,7 +75,8 @@ def addPost(data):
             """
             INSERT INTO Posts (user_id, category_id, title, publication_date,image_url, content, approved)
             VALUES (?,?, ?, ?, ?, ?, ?)
-            """, (data['user_id'], data['category_id'], data['title'], data['publication_date'], data['image_url'], data['content'], data['approved'])
+            """, 
+            (data['user_id'], data['category_id'], data['title'], data['publication_date'], data['image_url'], data['content'], data['approved'])
         )
 
         rows_created = db_cursor.rowcount
