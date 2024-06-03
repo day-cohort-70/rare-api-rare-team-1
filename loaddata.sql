@@ -70,6 +70,7 @@ CREATE TABLE "Comments" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
   "post_id" INTEGER,
   "author_id" INTEGER,
+  "date" date,
   "content" varchar,
   FOREIGN KEY(`post_id`) REFERENCES `Posts`(`id`),
   FOREIGN KEY(`author_id`) REFERENCES `Users`(`id`)
@@ -161,3 +162,67 @@ INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'passw
   '05/29/2024',
   1
 );
+
+
+INSERT INTO comments ('post_id', 'author_id', 'date', 'content')
+  VALUES (1, 4, '5/14/2024', 'This speaks true!');
+INSERT INTO comments ('post_id', 'author_id', 'date', 'content')
+  VALUES (1, 2, '5/15/2024', 'I doubt this is actually true. Seems kinda crazy. People will write anything for attention these days.');
+
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  1,
+  1,
+  'This is a Post Title',
+  '05/30/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for This specific Post, ya hear?',
+  1
+);
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  2,
+  1,
+  'Blakes Post Title',
+  '05/31/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Blakes post ya hear buddy?',
+  1
+);
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  2,
+  1,
+  'Blakes Older Post Title',
+  '05/29/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Blakes older post to test ordering the display of posts from newest to oldest ya hear buddy?',
+  1
+);
+
+
+
+  INSERT INTO Categories ('label') VALUES ('Cat 2');
+  INSERT INTO Categories ('label') VALUES ('Cat 3');
+
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  4,
+  1,
+  'Niki Got Herself a Post!',
+  '05/29/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Nikis post. its really cool stuff',
+  1
+);
+INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
+  VALUES (
+  3,
+  1,
+  'Leah Got Herself a Post!',
+  '05/29/2024',
+  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
+  'This is the Content for Leahs post. how ya like them apples?',
+  1
+);
+

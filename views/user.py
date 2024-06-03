@@ -20,9 +20,9 @@ def login_user(user):
         db_cursor.execute("""
             select id, username
             from Users
-            where username = ?
+            where email = ?
             and password = ?
-        """, (user['username'], user['password']))
+        """, (user['email'], user['password']))
 
         user_from_db = db_cursor.fetchone()
 
@@ -48,27 +48,42 @@ def create_user(user):
     Returns:
         json string: Contains the token of the newly created user
     """
-    with sqlite3.connect('./db.sqlite3') as conn:
-        conn.row_factory = sqlite3.Row
-        db_cursor = conn.cursor()
+    with sqlite3.connect('./db.sqlite3') as connection:
+        connection = sqlite3.connect('db.sqlite3')
+        connection.row_factory = sqlite3.Row
+        db_cursor = connection.cursor()
 
         db_cursor.execute("""
-        Insert into Users (first_name, last_name, username, email, password, bio, created_on, active) values (?, ?, ?, ?, ?, ?, ?, 1)
+        INSERT INTO Users 
+        (
+            first_name,
+            last_name,
+            email,
+            bio,
+            username,
+            password,
+            created_on,
+            profile_image_url,
+            active
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             user['first_name'],
             user['last_name'],
-            user['username'],
             user['email'],
-            user['password'],
             user['bio'],
-            datetime.now()
+            user['username'],
+            user['password'],
+            datetime.now(),
+            "https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2247726673.jpg",
+            1
         ))
 
-        id = db_cursor.lastrowid
+        new_user_id = db_cursor.lastrowid
+        
+        connection.commit()
 
         return json.dumps({
-            'token': id,
+            'token': new_user_id,
             'valid': True
         })
-    
-    #Change
