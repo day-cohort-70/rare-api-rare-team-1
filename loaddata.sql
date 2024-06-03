@@ -205,7 +205,6 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
   INSERT INTO Categories ('label') VALUES ('Cat 2');
   INSERT INTO Categories ('label') VALUES ('Cat 3');
 
-
 INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
   VALUES (
   4,
