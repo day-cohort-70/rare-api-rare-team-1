@@ -205,14 +205,7 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
   INSERT INTO Categories ('label') VALUES ('Cat 2');
   INSERT INTO Categories ('label') VALUES ('Cat 3');
 
-  2,
-  1,
-  'Blakes Future Post Title',
-  '06/01/2024',
-  'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
-  'This is the Content for Blakes Future post its a post from the future',
-  1
-);
+
 INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
   VALUES (
   4,
