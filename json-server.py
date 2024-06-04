@@ -6,7 +6,7 @@ from request_handler import HandleRequests, status
 
 from views import get_all_posts
 from views import create_user, login_user
-from views import get_single_post, addPost
+from views import get_single_post, addPost, updatePost
 from views import grabCategoryList, addCategory
 from views import getTagList, addTag
 from views import get_all_comments, get_post_comments, create_comment
@@ -59,7 +59,19 @@ class JSONServer(HandleRequests):
     
 
     def do_PUT(self):
-        pass
+        url = self.parse_url(self.path)
+        pk = url["pk"]
+
+        content_len = int(self.headers.get('content-length', 0))
+        request_body = self.rfile.read(content_len)
+        request_body = json.loads(request_body)
+
+        if url["requested_resource"] == "posts":
+            if pk != 0:
+                successfully_updated  = updatePost(request_body)
+                if successfully_updated:
+                    return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+            return self.response("", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
 
     def do_DELETE(self):
         pass
