@@ -65,3 +65,20 @@ def get_single_post(url):
         serialized_post = json.dumps(post_dictionary)
 
     return serialized_post
+
+
+def addPost(data):
+    with sqlite3.connect("./db.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(
+            """
+            INSERT INTO Posts (user_id, category_id, title, publication_date,image_url, content, approved)
+            VALUES (?,?, ?, ?, ?, ?, ?)
+            """, 
+            (data['user_id'], data['category_id'], data['title'], data['publication_date'], data['image_url'], data['content'], data['approved'])
+        )
+
+        rows_created = db_cursor.rowcount
+        new_post_id = json.dumps(db_cursor.lastrowid)
+    return new_post_id if rows_created > 0 else False

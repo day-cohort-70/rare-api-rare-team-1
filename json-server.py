@@ -6,10 +6,11 @@ from request_handler import HandleRequests, status
 
 from views import get_all_posts
 from views import create_user, login_user
-from views import get_single_post
+from views import get_single_post, addPost
 from views import grabCategoryList, addCategory
 from views import getTagList, addTag
 from views import get_all_comments, get_post_comments, create_comment
+from views import addPostTag
 
 
 
@@ -89,25 +90,35 @@ class JSONServer(HandleRequests):
         elif resource == "comments":
             successfully_posted = create_comment(request_body)
             if successfully_posted:
-                return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+                return self.response("", status.HTTP_201_SUCCESS_CREATED.value)
             else:
                 return self.response("Unable to post comment", status.HTTP_400_CLIENT_ERROR_BAD_REQUEST_DATA.value)
 
         elif resource == "category":
             successfully_posted = addCategory(request_body)
             if successfully_posted:
-                return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+                return self.response("", status.HTTP_201_SUCCESS_CREATED.value)
             else:
                 return self.response("Requested resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
         
         elif resource == "tag":
             successfully_posted = addTag(request_body)
             if successfully_posted:
-                return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
-            else:
-                return self.response("Requested Resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
+                return self.response("", status.HTTP_201_SUCCESS_CREATED.value)
+            return self.response("Requested Resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
 
+        elif resource == "posts":
+            successfully_posted = addPost(request_body)
+            #I changed this function to return the new post id or False
+            if successfully_posted is not False:
+                return self.response(successfully_posted, status.HTTP_201_SUCCESS_CREATED.value)  # Use 201 for created
+            return self.response("Requested Resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
 
+        elif resource == "postTags":
+            successfully_posted = addPostTag(request_body)
+            if successfully_posted:
+                    return self.response ("", status.HTTP_201_SUCCESS_CREATED.value)
+            return self.response("Requested Resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
 #APPARENTLY NO ONE CARES ABOUT THIS
 def main():
     host = ''
