@@ -67,12 +67,14 @@ class JSONServer(HandleRequests):
         url = self.parse_url(self.path)
         pk = url["pk"]
 
-        if url["requested_resource"] == "Posts":
+        if url["requested_resource"].lower() == "posts":
             if pk != 0:
                 successfully_deleted = delete_post(pk)
                 if successfully_deleted:
                         return self.response ("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
                 return self.response("Requested resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
+        else:
+            return self.response("Requested resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND)
 
 
     def do_POST(self):
