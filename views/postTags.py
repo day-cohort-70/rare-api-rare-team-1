@@ -3,6 +3,7 @@ import json
 
 
 
+
 def get_post_tags(url):
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
@@ -76,7 +77,8 @@ def get_all_post_tags(url):
         serialized_postTags = json.dumps(postTags)
     
     return serialized_postTags
-
+  
+  
 def update_post_tags(post_id, body):
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
@@ -97,3 +99,20 @@ def update_post_tags(post_id, body):
         rows_affected = db_cursor.rowcount
 
     return True if rows_affected > 0 else False
+
+  
+def addPostTag(data):
+    with sqlite3.connect("./db.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute(
+            """
+            INSERT INTO PostTags (post_id, tag_id)
+            VALUES (?,?)
+            """, (data['post_id'], data['tag_id'])
+        )
+
+        rows_created = db_cursor.rowcount
+    
+    return True if rows_created > 0 else False
+

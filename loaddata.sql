@@ -238,3 +238,4 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
   1
 );
 
+DELETE FROM Posts WHERE id > 3;
