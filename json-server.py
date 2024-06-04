@@ -11,6 +11,8 @@ from views import grabCategoryList, addCategory
 from views import getTagList, addTag
 from views import get_all_comments, get_post_comments, create_comment
 from views import addPostTag
+from views import delete_post
+
 
 
 
@@ -62,7 +64,16 @@ class JSONServer(HandleRequests):
         pass
 
     def do_DELETE(self):
-        pass
+        url = self.parse_url(self.path)
+        pk = url["pk"]
+
+        if url["requested_resource"] == "Posts":
+            if pk != 0:
+                successfully_deleted = delete_post(pk)
+                if successfully_deleted:
+                        return self.response ("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+                return self.response("Requested resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
+
 
     def do_POST(self):
         # Parse the URL and get the primary key
