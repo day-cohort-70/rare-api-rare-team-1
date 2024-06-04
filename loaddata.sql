@@ -111,7 +111,19 @@ CREATE TABLE "Categories" (
 );
 
 INSERT INTO Categories ('label') VALUES ('News');
+
 INSERT INTO Tags ('label') VALUES ('JavaScript');
+INSERT INTO Tags ('label') VALUES ('Music');
+INSERT INTO Tags ('label') VALUES ('Home Improvement');
+INSERT INTO Tags ('label') VALUES ('Gardening');
+INSERT INTO Tags ('label') VALUES ('Trending');
+
+INSERT INTO PostTags ('post_id', 'tag_id') VALUES (4, 6);
+INSERT INTO PostTags ('post_id', 'tag_id') VALUES (4, 8);
+INSERT INTO PostTags ('post_id', 'tag_id') VALUES (4, 12);
+INSERT INTO PostTags ('post_id', 'tag_id') VALUES (4, 2);
+
+
 INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.com/so/happy');
 
 INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'password', 'profile_image_url', 'created_on', 'active')

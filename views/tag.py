@@ -24,6 +24,7 @@ def getTagList():
     return serialized_categories
 
 
+
 def addTag(label):
     with sqlite3.connect("./db.sqlite3") as conn:
         db_cursor = conn.cursor()
