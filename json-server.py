@@ -6,7 +6,7 @@ from request_handler import HandleRequests, status
 
 from views import get_all_posts
 from views import create_user, login_user
-from views import get_single_category, grabCategoryList, addCategory, update_category
+from views import get_single_category, grabCategoryList, addCategory, update_category, delete_category
 from views import get_single_post, addPost, updatePost, delete_post
 from views import getTagList, addTag, update_tag
 from views import get_post_tags, get_all_post_tags, update_post_tags
@@ -121,6 +121,15 @@ class JSONServer(HandleRequests):
                 if successfully_deleted:
                         return self.response ("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
                 return self.response("Requested resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
+            
+        if url["requested_resource"] == "category":
+            if pk != 0:
+                successfully_deleted = delete_category(pk)
+                if successfully_deleted:
+                    return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+                else:
+                    return self.response("Could not delete category", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
+
         else:
             return self.response("Requested resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND)
 

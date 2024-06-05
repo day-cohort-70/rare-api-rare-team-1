@@ -58,6 +58,7 @@ def addCategory(label):
 
     return True
 
+
 def update_category(pk, data):
     with sqlite3.connect("./db.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
@@ -71,6 +72,26 @@ def update_category(pk, data):
         """, (data['label'], pk))
 
         conn.commit()
+
+        rows_affected = db_cursor.rowcount
+
+    return True if rows_affected > 0 else False
+
+
+def delete_category(pk):
+    with sqlite3.connect("./db.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+            UPDATE Posts
+            SET category_id = 0
+            WHERE category_id = ?
+        """, (pk,))
+        
+        db_cursor.execute("""
+            DELETE FROM Categories WHERE id = ?
+        """, (pk,))
 
         rows_affected = db_cursor.rowcount
 
