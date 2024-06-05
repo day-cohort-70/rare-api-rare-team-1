@@ -188,9 +188,9 @@ INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'passw
 
 
 INSERT INTO comments ('post_id', 'author_id', 'date', 'content')
-  VALUES (1, 4, '5/14/2024', 'This speaks true!');
+  VALUES (12, 4, '5-14-2024 03:19:27 PM', 'This speaks true!');
 INSERT INTO comments ('post_id', 'author_id', 'date', 'content')
-  VALUES (1, 2, '5/15/2024', 'I doubt this is actually true. Seems kinda crazy. People will write anything for attention these days.');
+  VALUES (14, 2, '5-15-2024 11:11:11 PM', 'I doubt this is actually true. Seems kinda crazy. People will write anything for attention these days.');
 
 
 INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
