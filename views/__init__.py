@@ -5,5 +5,5 @@ from .category import grabCategoryList, addCategory
 from .tag import getTagList, addTag, deleteTag
 from .postTags import get_post_tags, get_all_post_tags, update_post_tags
 from .comment import get_post_comments, get_all_comments, create_comment
-from .postTags import addPostTag
+from .postTags import addPostTag, deletePostTagByTagId
 
