@@ -85,3 +85,4 @@ def create_comment(comment_data):
         rows_created = cursor.rowcount
     
     return True if rows_created > 0 else False
+
