@@ -92,6 +92,8 @@ class JSONServer(HandleRequests):
                 if successfully_updated:
                     return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
             return self.response("", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
+        
+        # add tag resource. pass pk and body to function
 
     def do_DELETE(self):
         url = self.parse_url(self.path)
