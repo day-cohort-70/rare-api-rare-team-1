@@ -6,12 +6,14 @@ from request_handler import HandleRequests, status
 
 from views import get_all_posts
 from views import create_user, login_user
-from views import get_single_post, addPost
-from views import grabCategoryList, addCategory
+from views import get_single_category, grabCategoryList, addCategory, update_category, delete_category
+from views import get_single_post, addPost, updatePost, delete_post
 from views import getTagList, addTag, deleteTag
 from views import get_post_tags, get_all_post_tags, update_post_tags
 from views import get_all_comments, get_post_comments, create_comment
 from views import addPostTag, deletePostTagByTagId
+
+
 
 
 
@@ -43,10 +45,11 @@ class JSONServer(HandleRequests):
 
         elif url["requested_resource"] == "category":
             if url["pk"] != 0:
-                pass
-
-            response_body = grabCategoryList()
-            return self.response(response_body, status.HTTP_200_SUCCESS.value)
+                response_body = get_single_category(url)
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
+            else:
+                response_body = grabCategoryList()
+                return self.response(response_body, status.HTTP_200_SUCCESS.value)
        
         elif resource == "tag":
             if url['pk'] != 0:
@@ -84,13 +87,27 @@ class JSONServer(HandleRequests):
                 else:
                     return self.response("Could not update tags", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
 
+        elif resource == "category":
+            if url['pk'] != 0:
+                successfully_updated = update_category(pk, request_body)
+                if successfully_updated:
+                    return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+                else:
+                    return self.response("Could not update category", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
+
+        elif resource == "posts":
+            if pk != 0:
+                successfully_updated  = updatePost(request_body)
+                if successfully_updated:
+                    return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+            return self.response("", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
 
 
     def do_DELETE(self):
-        
+
         url = self.parse_url(self.path)
         pk = url["pk"]
-
+    
         if url["requested_resource"] == "tag":
             if pk != 0:
                 successfully_deleted = deleteTag(pk)
@@ -106,7 +123,25 @@ class JSONServer(HandleRequests):
                     return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
                 
                 return self.response("Requested resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
+
+        if url["requested_resource"].lower() == "posts":
+            if pk != 0:
+                successfully_deleted = delete_post(pk)
+                if successfully_deleted:
+                        return self.response ("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+                return self.response("Requested resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
             
+        if url["requested_resource"] == "category":
+            if pk != 0:
+                successfully_deleted = delete_category(pk)
+                if successfully_deleted:
+                    return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+                else:
+                    return self.response("Could not delete category", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
+
+        else:
+            return self.response("Requested resource not found", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND)
+
 
 
     def do_POST(self):

@@ -110,13 +110,22 @@ CREATE TABLE "Categories" (
   "label" varchar
 );
 
+
 INSERT INTO Categories ('label') VALUES ('News');
+INSERT INTO Categories ('label') VALUES ('Sports');
+INSERT INTO Categories ('label') VALUES ('Home Improvement');
+INSERT INTO Categories ('label') VALUES ('Fashion');
+INSERT INTO Categories ('label') VALUES ('Gardening');
+INSERT INTO Categories ('label') VALUES ('Trending');
+INSERT INTO Categories ('id', 'label') VALUES (0, 'Uncategorized');
+
 
 INSERT INTO Tags ('label') VALUES ('JavaScript');
 INSERT INTO Tags ('label') VALUES ('Music');
 INSERT INTO Tags ('label') VALUES ('Home Improvement');
 INSERT INTO Tags ('label') VALUES ('Gardening');
 INSERT INTO Tags ('label') VALUES ('Trending');
+
 
 INSERT INTO PostTags ('post_id', 'tag_id') VALUES (4, 6);
 INSERT INTO PostTags ('post_id', 'tag_id') VALUES (4, 8);
@@ -125,6 +134,8 @@ INSERT INTO PostTags ('post_id', 'tag_id') VALUES (4, 2);
 
 
 INSERT INTO Reactions ('label', 'image_url') VALUES ('happy', 'https://pngtree.com/so/happy');
+
+
 
 INSERT INTO Users ('first_name', 'last_name', 'email', 'bio', 'username', 'password', 'profile_image_url', 'created_on', 'active')
   VALUES (
@@ -181,10 +192,11 @@ INSERT INTO comments ('post_id', 'author_id', 'date', 'content')
 INSERT INTO comments ('post_id', 'author_id', 'date', 'content')
   VALUES (1, 2, '5/15/2024', 'I doubt this is actually true. Seems kinda crazy. People will write anything for attention these days.');
 
+
 INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
   VALUES (
   1,
-  1,
+  0,
   'This is a Post Title',
   '05/30/2024',
   'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
@@ -194,7 +206,7 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
 INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
   VALUES (
   2,
-  1,
+  0,
   'Blakes Post Title',
   '05/31/2024',
   'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
@@ -204,23 +216,17 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
 INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
   VALUES (
   2,
-  1,
+  0,
   'Blakes Older Post Title',
   '05/29/2024',
   'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
   'This is the Content for Blakes older post to test ordering the display of posts from newest to oldest ya hear buddy?',
   1
 );
-
-
-
-  INSERT INTO Categories ('label') VALUES ('Cat 2');
-  INSERT INTO Categories ('label') VALUES ('Cat 3');
-
 INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
   VALUES (
   4,
-  1,
+  0,
   'Niki Got Herself a Post!',
   '05/29/2024',
   'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
@@ -230,7 +236,7 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
 INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_url', 'content', 'approved')
   VALUES (
   3,
-  1,
+  0,
   'Leah Got Herself a Post!',
   '05/29/2024',
   'https://cdn.abcteach.com/abcteach-content-free/docs/free_preview/n/newspaper_rgb_p.png',
@@ -238,4 +244,3 @@ INSERT INTO Posts ('user_id', 'category_id', 'title', 'publication_date','image_
   1
 );
 
-DELETE FROM Posts WHERE id > 3;
