@@ -147,7 +147,7 @@ class JSONServer(HandleRequests):
                 else:
                     return self.response("Could not delete category", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
                 
-        if url["requested_resource"] == "comment":
+        if url["requested_resource"].lower() == "comments":
             if pk != 0:
                 successfully_deleted = delete_comment(pk)
                 if successfully_deleted:
