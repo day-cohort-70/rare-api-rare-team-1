@@ -11,6 +11,7 @@ from views import get_single_post, addPost, updatePost, delete_post
 from views import getTagList, addTag, deleteTag,update_tag
 from views import get_post_tags, get_all_post_tags, update_post_tags
 from views import get_all_comments, get_post_comments, create_comment, delete_comment
+from views import get_all_comments, get_post_comments, create_comment, update_comment
 from views import addPostTag, deletePostTagByTagId
 
 
@@ -110,6 +111,13 @@ class JSONServer(HandleRequests):
                 else:
                     return self.response("Could not update tag", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
 
+        elif resource == "comments":
+            if url['pk'] != 0:
+                successfully_updated = update_comment(pk, request_body)
+                if successfully_updated:
+                    return self.response("", status.HTTP_204_SUCCESS_NO_RESPONSE_BODY.value)
+                else:
+                    return self.response("Could not update comment", status.HTTP_404_CLIENT_ERROR_RESOURCE_NOT_FOUND.value)
 
     def do_DELETE(self):
 
