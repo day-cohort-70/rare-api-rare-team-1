@@ -11,14 +11,14 @@
 
   <p align="center">
     <br />
-    <a href="https://github.com/day-cohort-70/rare-client-rare-team-1"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/day-cohort-70/rare-api-rare-team-1"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/day-cohort-70/rare-client-rare-team-1">View Demo</a>
+    <a href="https://github.com/day-cohort-70/rare-api-rare-team-1">View Demo</a>
     ·
-    <a href="https://github.com/day-cohort-70/rare-client-rare-team-1/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/day-cohort-70/rare-api-rare-team-1/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/day-cohort-70/rare-client-rare-team-1/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/day-cohort-70/rare-api-rare-team-1/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -146,7 +146,7 @@ This application supports both admin and general user profiles.  Admins have the
 15. Delete any Post
 16. Delete any Comment
 
-See the [open issues](https://github.com/day-cohort-70/rare-client-rare-team-1/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/day-cohort-70/rare-api-rare-team-1/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -171,7 +171,7 @@ Don't forget to give the project a star! Thanks again!
 ## Contact
 
 
-Project Link: [https://github.com/day-cohort-70/rare-client-rare-team-1](https://github.com/day-cohort-70/rare-client-rare-team-1)
+Project Link: [https://github.com/day-cohort-70/rare-api-rare-team-1](https://github.com/day-cohort-70/rare-api-rare-team-1)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -183,9 +183,9 @@ Project Link: [https://github.com/day-cohort-70/rare-client-rare-team-1](https:/
 [React-url]: https://reactjs.org/
 [Bulma.com]: https://img.shields.io/badge/Bulma-FF2D20?style=for-the-badge&logo=bulma&logoColor=white
 [Bulma-url]: https://bulma.io/
-[JSON.com]: https://img.shields.io/badge/JSON-FF2D20?style=for-the-badge&logo=JSON&logoColor=white
+[JSON.com]: https://img.shields.io/badge/JSON-FF2D20?style=for-the-badge&logo=JSON&logoColor=61DAFB
 [JSON-url]: https://github.com/typicode/json-server/tree/v0
 [Python.com]: https://img.shields.io/badge/Python-FF2D20?style=for-the-badge&logo=python&logoColor=white
 [Python-url]: https://www.python.org/
-[SQLite.com]: https://img.shields.io/badge/SQLite-FF2D20?style=for-the-badge&logo=sqlite&logoColor=white
+[SQLite.com]: https://img.shields.io/badge/SQLite-FF2D20?style=for-the-badge&logo=sqlite&logoColor=61DAFB
 [SQLite-url]: https://sqlite.org/
