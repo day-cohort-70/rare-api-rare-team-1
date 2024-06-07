@@ -105,6 +105,19 @@ def updatePost(data):
     return True if rows_affected > 0 else False
 
 
+def update_post_partial(pk, newStatus):
+    with sqlite3.connect("./db.sqlite3") as conn:
+        db_cursor = conn.cursor()
+
+        db_cursor.execute("""
+        UPDATE Posts SET approved = ?
+        WHERE id = ?
+        """, (newStatus['approved'], pk))
+
+        rows_affected = db_cursor.rowcount
+
+    return True if rows_affected > 0 else False
+
 
 def delete_post(pk):
     with sqlite3.connect("./db.sqlite3") as conn:
